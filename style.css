@@ -178,16 +178,16 @@ h1 em, h2 em { color: var(--pink); font-weight: inherit; }
 .button:hover { transform: translateY(-3px); box-shadow: 0 17px 42px rgba(255,45,154,.44); }
 
 .preview-grid, .card-grid, .social-grid, .gallery-grid, .tutorial-grid { display: grid; gap: 18px; }
-.preview-grid { column-gap: 30px; row-gap: 38px; }
+.preview-grid { column-gap: 58px; row-gap: 76px; }
 .preview-grid { grid-template-columns: repeat(6, 1fr); }
 .preview-card, .content-card, .tutorial-card, .social-card, .gallery-card, .diary-card { position: relative; overflow: hidden; border: 1px solid var(--line); border-radius: 24px; background: linear-gradient(145deg, rgba(52,13,49,.92), rgba(20,5,20,.9)); box-shadow: 0 20px 55px rgba(0,0,0,.25); }
-.preview-card { min-height: 300px; grid-column: span 2; display: flex; flex-direction: column; padding: 52px; outline: 0; transition: .25s ease; }
+.preview-card { min-height: 300px; grid-column: span 2; display: flex; flex-direction: column; overflow: visible; isolation: isolate; padding: 62px; border-color: rgba(255,213,235,.08); outline: 0; box-shadow: inset 0 0 42px rgba(0,0,0,.52), inset 0 1px 0 rgba(255,213,235,.08), 0 24px 65px rgba(0,0,0,.34); transition: .25s ease; }
 .preview-card:nth-child(1), .preview-card:nth-child(2) { grid-column: span 3; }
-.preview-card::before { content: ""; position: absolute; z-index: 1; inset: -14px; border: 64px solid transparent; border-image: url("assets/frame-baroque-v1.webp") 25% / 64px / 0 stretch; filter: drop-shadow(0 14px 13px rgba(0,0,0,.58)); pointer-events: none; transition: .25s ease; }
-.preview-card::after { content: ""; position: absolute; z-index: 1; inset: 24px; border: 1px solid rgba(255,213,235,.18); border-radius: 8px; box-shadow: inset 0 0 22px rgba(255,45,154,.07); pointer-events: none; transition: .25s ease; }
+.preview-card::before { content: ""; position: absolute; z-index: 1; inset: -34px; border: 88px solid transparent; border-image: url("assets/frame-baroque-v1.webp") 25% / 88px / 0 stretch; filter: drop-shadow(0 25px 18px rgba(0,0,0,.72)) drop-shadow(0 7px 5px rgba(0,0,0,.62)) drop-shadow(0 0 8px rgba(255,45,154,.13)); pointer-events: none; transition: .25s ease; }
+.preview-card::after { content: ""; position: absolute; z-index: 1; inset: 31px; border: 1px solid rgba(255,213,235,.14); border-radius: 7px; background: linear-gradient(145deg, rgba(71,16,64,.14), rgba(9,2,9,.18)); box-shadow: inset 0 9px 18px rgba(0,0,0,.42), inset 0 -1px 0 rgba(255,213,235,.1), 0 1px 0 rgba(255,45,154,.09); pointer-events: none; transition: .25s ease; }
 .preview-card > :not(.card-mascot):not(.symbol) { position: relative; z-index: 2; }
-.preview-card:hover { transform: translateY(-7px); border-color: rgba(255,45,154,.52); box-shadow: 0 24px 65px rgba(0,0,0,.3), 0 0 32px rgba(255,45,154,.1); }
-.preview-card:hover::before { opacity: 1; filter: drop-shadow(0 16px 16px rgba(0,0,0,.62)) drop-shadow(0 0 11px rgba(255,45,154,.2)); }
+.preview-card:hover { transform: translateY(-7px); border-color: rgba(255,45,154,.22); box-shadow: inset 0 0 42px rgba(0,0,0,.52), 0 31px 76px rgba(0,0,0,.42), 0 0 35px rgba(255,45,154,.1); }
+.preview-card:hover::before { opacity: 1; filter: drop-shadow(0 29px 21px rgba(0,0,0,.76)) drop-shadow(0 8px 6px rgba(0,0,0,.62)) drop-shadow(0 0 13px rgba(255,45,154,.22)); }
 .preview-card:hover::after { border-color: rgba(255,213,235,.34); box-shadow: inset 0 0 20px rgba(255,45,154,.09); }
 .preview-card .symbol { position: absolute; right: 20px; top: 3px; color: rgba(255,45,154,.16); font: 6rem/1 Georgia, serif; }
 .preview-card h2 { position: relative; max-width: 80%; margin: 55px 0 12px; font-size: 1.75rem; }
@@ -390,8 +390,10 @@ a.platform-badge:hover, a.platform-badge:focus-visible { color: white; transform
   .dossier-wide { grid-column: auto; }
   .dossier-box dl div { grid-template-columns: 1fr; gap: 4px; }
   .preview-card, .preview-card:nth-child(1), .preview-card:nth-child(2) { grid-column: auto; min-height: 270px; }
-  .preview-card { padding: 46px; }
-  .preview-card::before { inset: -11px; border-width: 54px; border-image-width: 54px; }
+  .preview-grid { margin-inline: 12px; row-gap: 66px; }
+  .preview-card { padding: 52px; }
+  .preview-card::before { inset: -26px; border-width: 68px; border-image-width: 68px; }
+  .preview-card::after { inset: 25px; }
   .preview-card.mascot-card { min-height: 385px; padding-top: 152px; }
   .preview-card.mascot-card h2 { max-width: 70%; }
   .closet-mascot { width: min(76vw, 300px); top: -77px; right: -12px; }
