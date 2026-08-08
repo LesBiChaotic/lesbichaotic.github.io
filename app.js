@@ -16,7 +16,7 @@ document.body.insertAdjacentHTML("afterbegin", `
   <aside class="sidebar" id="site-menu" aria-label="Site menu">
     <div class="side-head">
       <a class="side-brand" href="index.html" aria-label="LesBiChaotic home">
-        <img src="https://lesbichaotic.github.io/assets/lesbichaotic-emblem.webp" alt="">
+        <img src="assets/lesbichaotic-emblem.webp?v=draft6" alt="">
         <span><b>LesBiChaotic</b><small>Soft hearts. Sharp teeth.</small></span>
       </a>
       <button class="menu-close" type="button" aria-label="Collapse menu">×</button>
