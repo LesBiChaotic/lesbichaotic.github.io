@@ -116,6 +116,21 @@ blockquote span { color: var(--hot-pink); white-space: nowrap; }
 .tutorial-card p { position: relative; margin: 0; max-width: 430px; color: var(--muted); line-height: 1.7; }
 .tutorial-note { margin: 24px 0 0; color: var(--pearl); font-size: .82rem; letter-spacing: .04em; }
 
+
+.socials { border-top: 1px solid rgba(255,213,235,.1); }
+.socials .section-heading > p:last-child { color: var(--muted); }
+.social-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; max-width: 920px; margin: 58px auto 0; }
+.social-card { position: relative; min-height: 330px; padding: 36px; display: flex; flex-direction: column; overflow: hidden; border: 1px solid rgba(255,213,235,.16); border-radius: 26px; background: linear-gradient(145deg, rgba(54,12,50,.94), rgba(20,5,20,.9)); box-shadow: 0 22px 60px rgba(0,0,0,.28); transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease; }
+.social-card:hover { transform: translateY(-6px); border-color: rgba(255,45,154,.55); box-shadow: 0 26px 70px rgba(255,45,154,.14); }
+.social-symbol { position: absolute; right: 25px; top: 10px; color: rgba(255,45,154,.18); font-family: Georgia, serif; font-size: 6rem; line-height: 1; text-shadow: 0 0 28px rgba(255,45,154,.3); }
+.herehaven-card .social-symbol { color: rgba(138,46,255,.2); text-shadow: 0 0 28px rgba(138,46,255,.35); }
+.social-status { position: relative; margin: 0; color: var(--hot-pink); font-size: .7rem; font-weight: 900; letter-spacing: .18em; text-transform: uppercase; }
+.social-card h3 { position: relative; margin: 28px 0 14px; font-family: Georgia, serif; font-size: 2.25rem; }
+.social-card > p:not(.social-status) { position: relative; margin: 0; color: var(--muted); line-height: 1.7; }
+.social-link { position: relative; width: fit-content; margin-top: auto; padding-top: 34px; color: var(--pearl); font-size: .76rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+a.social-link:hover, a.social-link:focus-visible { color: var(--white); text-shadow: 0 0 14px var(--hot-pink); }
+.coming-soon { color: var(--lilac); cursor: default; }
+
 .finale { min-height: 74vh; padding: 100px 5vw; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; position: relative; overflow: hidden; background: radial-gradient(circle, rgba(255,45,154,.17), transparent 54%); }
 .finale-heart { position: absolute; color: rgba(255,45,154,.07); font-size: min(65vw, 700px); line-height: 1; }
 .finale > *:not(.finale-heart) { position: relative; }
@@ -138,6 +153,8 @@ footer { min-height: 120px; display: flex; justify-content: space-between; align
   .vibe-grid { grid-template-columns: 1fr; }
   .vibe-card { min-height: 300px; }
   .tutorial-grid { grid-template-columns: 1fr; }
+  .social-grid { grid-template-columns: 1fr; }
+  .social-card { min-height: 300px; }
   footer { flex-direction: column; text-align: center; justify-content: center; }
 }
 
