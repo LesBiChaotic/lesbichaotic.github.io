@@ -1,10 +1,21 @@
-const pages = [
+const mainPages = [
   ["home", "index.html", "⌂", "Home"],
   ["about", "about.html", "♡", "About"],
   ["scenarios", "scenarios.html", "✦", "Scenarios"],
   ["tutorials", "tutorials.html", "✎", "Creation Tutorials"],
   ["diary", "diary.html", "☾", "Development Diary"],
   ["gallery", "gallery.html", "◉", "Flash! Camera! Gay!"],
+];
+const hobbyPages = [
+  ["hobby", "hobby.html", "Hobby Hub"],
+  ["playlist", "playlist.html", "Playlist"],
+  ["books", "books.html", "Books"],
+  ["games", "games.html", "Games"],
+  ["youtube", "youtube.html", "YouTube"],
+  ["inspiration", "inspiration.html", "Inspiration Cabinet"],
+  ["creators", "recommended-creators.html", "Recommended Creators", "about"],
+];
+const visitorPages = [
   ["help", "play-help.html", "?", "Play Help & FAQ"],
   ["updates", "updates.html", "✧", "Update Log"],
   ["resources", "resources.html", "▤", "Creator Resources"],
@@ -26,7 +37,18 @@ document.body.insertAdjacentHTML("afterbegin", `
       <button class="menu-close" type="button" aria-label="Collapse menu">×</button>
     </div>
     <nav class="side-nav" aria-label="Primary navigation">
-      ${pages.map(([id, href, icon, label], index) => `${index === 6 ? '<div class="visitor-divider" aria-hidden="true"><span>Visitor Tools</span></div>' : ''}<a href="${href}" ${id === page ? 'aria-current="page"' : ""}><span class="nav-icon" aria-hidden="true"><picture><source srcset="assets/menu-icons/${id}.webp" type="image/webp"><img src="assets/menu-icons/${id}.png" alt=""></picture></span><b>${label}</b></a>`).join("")}
+      ${mainPages.map(([id, href, icon, label]) => `<a href="${href}" ${id === page ? 'aria-current="page"' : ""}><span class="nav-icon" aria-hidden="true"><picture><source srcset="assets/menu-icons/${id}.webp" type="image/webp"><img src="assets/menu-icons/${id}.png" alt=""></picture></span><b>${label}</b></a>`).join("")}
+      <div class="visitor-divider hobby-divider" aria-hidden="true"><span>Personal Cabinet</span></div>
+      <div class="hobby-nav ${hobbyPages.some(([id]) => id === page) ? "is-expanded" : ""}">
+        <button class="hobby-nav-toggle" type="button" aria-controls="hobby-submenu" aria-expanded="${hobbyPages.some(([id]) => id === page)}">
+          <span class="nav-icon" aria-hidden="true"><picture><source srcset="assets/hobby-icons/hobby.webp" type="image/webp"><img src="assets/hobby-icons/hobby.png" alt=""></picture></span><b>Hobby Hub</b><i aria-hidden="true">⌄</i>
+        </button>
+        <div class="hobby-submenu" id="hobby-submenu">
+          ${hobbyPages.map(([id, href, label, icon = id]) => `<a href="${href}" ${id === page ? 'aria-current="page"' : ""}><span class="nav-icon" aria-hidden="true"><picture><source srcset="assets/${id === "creators" ? "menu-icons" : "hobby-icons"}/${icon}.webp" type="image/webp"><img src="assets/${id === "creators" ? "menu-icons" : "hobby-icons"}/${icon}.png" alt=""></picture></span><b>${label}</b></a>`).join("")}
+        </div>
+      </div>
+      <div class="visitor-divider" aria-hidden="true"><span>Visitor Tools</span></div>
+      ${visitorPages.map(([id, href, icon, label]) => `<a href="${href}" ${id === page ? 'aria-current="page"' : ""}><span class="nav-icon" aria-hidden="true"><picture><source srcset="assets/menu-icons/${id}.webp" type="image/webp"><img src="assets/menu-icons/${id}.png" alt=""></picture></span><b>${label}</b></a>`).join("")}
     </nav>
     <div class="platform-shortcuts" aria-label="Find LesBiChaotic elsewhere">
       <a class="fictionlab-shortcut" href="https://fictionlab.ai/user/019fdc53-fc9c-7481-b6f7-abb26f642a36" target="_blank" rel="noopener noreferrer"><span>✦</span><b>Find me on FictionLab</b><small>I am new—come watch the chaos grow ↗</small></a>
@@ -38,27 +60,35 @@ document.body.insertAdjacentHTML("afterbegin", `
 `);
 
 const decorativeObjects = {
-  home: ["jeweled-key.webp", "Home key"],
-  about: ["hand-mirror.webp", "Hand mirror"],
-  scenarios: ["half-open-door.webp", "Half-open door"],
-  tutorials: ["fountain-pen-ribbon.webp", "Fountain pen and ribbon"],
-  diary: ["locked-diary.webp", "Locked diary"],
-  gallery: ["vintage-camera.webp", "Vintage camera"],
-  help: ["question-cards.webp", "Question cards"],
-  updates: ["datebook.webp", "Datebook"],
-  resources: ["ribbon-folder.webp", "Ribbon-tied folder"],
-  requests: ["sealed-envelope.webp", "Sealed envelope"],
+  home: ["assets/objects/jeweled-key.webp", "Home key"],
+  about: ["assets/objects/hand-mirror.webp", "Hand mirror"],
+  scenarios: ["assets/objects/half-open-door.webp", "Half-open door"],
+  tutorials: ["assets/objects/fountain-pen-ribbon.webp", "Fountain pen and ribbon"],
+  diary: ["assets/objects/locked-diary.webp", "Locked diary"],
+  gallery: ["assets/objects/vintage-camera.webp", "Vintage camera"],
+  help: ["assets/objects/question-cards.webp", "Question cards"],
+  updates: ["assets/objects/datebook.webp", "Datebook"],
+  resources: ["assets/objects/ribbon-folder.webp", "Ribbon-tied folder"],
+  requests: ["assets/objects/sealed-envelope.webp", "Sealed envelope"],
+  playlist: ["assets/hobby-objects/playlist.webp", "Cassette player and headphones"],
+  books: ["assets/hobby-objects/books.webp", "Open book on a crescent stand"],
+  games: ["assets/hobby-objects/games.webp", "Arcade joystick"],
+  youtube: ["assets/hobby-objects/youtube.webp", "Gothic video screen"],
+  inspiration: ["assets/hobby-objects/inspiration.webp", "Inspiration drawer cabinet"],
+  creators: ["assets/objects/secret-heart-locket.webp", "Jeweled recommendation locket"],
 };
 const pageHero = document.querySelector(".hero-home, .page-hero");
 if (pageHero && decorativeObjects[page]) {
   const [filename, label] = decorativeObjects[page];
-  pageHero.insertAdjacentHTML("afterend", `<div class="object-ribbon-divider" aria-hidden="true"><span></span><img src="assets/objects/${filename}" alt="" title="${label}"><span></span></div>`);
+  pageHero.insertAdjacentHTML("afterend", `<div class="object-ribbon-divider" aria-hidden="true"><span></span><img src="${filename}" alt="" title="${label}"><span></span></div>`);
 }
 
 const sidebar = document.querySelector(".sidebar");
 const openButton = document.querySelector(".menu-open");
 const closeButton = document.querySelector(".menu-close");
 const scrim = document.querySelector(".menu-scrim");
+const hobbyNav = document.querySelector(".hobby-nav");
+const hobbyToggle = document.querySelector(".hobby-nav-toggle");
 
 function setMenu(open, remember = true) {
   document.body.classList.toggle("menu-is-open", open);
@@ -70,6 +100,26 @@ setMenu(isOpen, false);
 openButton.addEventListener("click", () => setMenu(true));
 closeButton.addEventListener("click", () => setMenu(false));
 scrim.addEventListener("click", () => setMenu(false));
+if (hobbyNav && hobbyToggle) {
+  const hobbyActive = hobbyPages.some(([id]) => id === page);
+  const rememberedHobby = localStorage.getItem("lb-hobby-menu-open");
+  const hobbyDesktop = window.matchMedia("(min-width: 980px)");
+  const startExpanded = hobbyDesktop.matches || hobbyActive || rememberedHobby === "true";
+  hobbyNav.classList.toggle("is-expanded", startExpanded);
+  hobbyToggle.setAttribute("aria-expanded", String(startExpanded));
+  hobbyToggle.addEventListener("click", () => {
+    if (hobbyDesktop.matches) return;
+    const expanded = !hobbyNav.classList.contains("is-expanded");
+    hobbyNav.classList.toggle("is-expanded", expanded);
+    hobbyToggle.setAttribute("aria-expanded", String(expanded));
+    localStorage.setItem("lb-hobby-menu-open", String(expanded));
+  });
+  hobbyDesktop.addEventListener("change", event => {
+    const expanded = event.matches || hobbyActive || localStorage.getItem("lb-hobby-menu-open") === "true";
+    hobbyNav.classList.toggle("is-expanded", expanded);
+    hobbyToggle.setAttribute("aria-expanded", String(expanded));
+  });
+}
 document.addEventListener("keydown", event => {
   if (event.key === "Escape" && document.body.classList.contains("menu-is-open")) {
     setMenu(false);
