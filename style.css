@@ -419,7 +419,9 @@ a.platform-badge:hover, a.platform-badge:focus-visible { color: white; transform
   .preview-card, .preview-card:nth-child(1), .preview-card:nth-child(2) { grid-column: auto; min-height: 270px; }
   .preview-card.mascot-card { min-height: 385px; padding-top: 152px; }
   .preview-card.mascot-card h2 { max-width: 70%; }
-  .closet-mascot { width: min(76vw, 300px); top: -77px; right: -12px; }
+  .preview-card.closet-card { min-height:0; padding-top:20px; }
+  .preview-card.closet-card h2 { max-width:100%; }
+  .closet-card .closet-mascot { position:relative; top:auto; right:auto; width:min(76vw,280px); margin:0 auto -6px; align-self:center; transform:rotate(1.5deg); }
   .preview-card.small-mascot-card { min-height: 390px; padding-top: 165px; }
   .small-card-mascot { width: 210px; right: -4px; }
   .mascot-hero > .kicker, .mascot-hero > h1, .mascot-hero > .lede { max-width: 100%; }
