@@ -237,4 +237,30 @@ if (secretDialog && secretOpen && secretClose) {
   secretDialog.addEventListener("close", () => secretOpen.focus());
 }
 
+document.querySelectorAll("[data-spotify-embed]").forEach(button => {
+  button.addEventListener("click", () => {
+    const slot = button.closest(".music-copy")?.querySelector(".spotify-player-slot");
+    if (!slot) return;
+    const alreadyLoaded = slot.querySelector("iframe");
+    if (alreadyLoaded) {
+      alreadyLoaded.remove();
+      button.textContent = "Load player";
+      button.setAttribute("aria-expanded", "false");
+      return;
+    }
+    const iframe = document.createElement("iframe");
+    iframe.src = button.dataset.spotifyEmbed;
+    iframe.title = `Spotify player: ${button.dataset.spotifyTitle}`;
+    iframe.width = "100%";
+    iframe.height = "152";
+    iframe.loading = "lazy";
+    iframe.allow = "encrypted-media; fullscreen; picture-in-picture";
+    iframe.setAttribute("allowfullscreen", "");
+    slot.append(iframe);
+    button.textContent = "Hide player";
+    button.setAttribute("aria-expanded", "true");
+  });
+  button.setAttribute("aria-expanded", "false");
+});
+
 document.querySelectorAll("[data-year]").forEach(node => node.textContent = new Date().getFullYear());
