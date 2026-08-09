@@ -606,7 +606,17 @@ a.platform-badge:hover, a.platform-badge:focus-visible { color: white; transform
 .hobby-legal-note p { margin-bottom:0; color:var(--muted); }
 .demon-scale { display:flex; flex-wrap:wrap; gap:10px 16px; align-items:center; }
 .demon-scale b { color:var(--hobby-accent); }
-.demon-scale span { color:var(--muted); font-size:.8rem; }
+.demon-scale > span { display:grid; gap:5px; color:var(--muted); font-size:.8rem; }
+.cat-rating { --score:100%; --mark-width:145px; position:relative; display:inline-block; width:var(--mark-width); aspect-ratio:1879 / 457; flex:0 0 auto; }
+.cat-rating::before,.cat-rating::after { content:""; position:absolute; inset:0; background:url('assets/hobby-icons/demon-cat-five-rating.webp') left center / var(--mark-width) auto no-repeat; }
+.cat-rating::before { opacity:.13; filter:grayscale(1); }
+.cat-rating::after { right:auto; width:var(--score); }
+.cat-rating-1 { --score:20%; }
+.cat-rating-2 { --score:40%; }
+.cat-rating-3 { --score:60%; }
+.cat-rating-4 { --score:80%; }
+.cat-rating-5 { --score:100%; }
+.cat-rating-large { --mark-width:210px; }
 
 /* Playlist entries: official artwork inside a site-native jeweled cabinet. */
 .now-listening-card { display:grid; grid-template-columns:minmax(220px,320px) minmax(0,1fr); gap:clamp(24px,5vw,58px); align-items:center; padding:clamp(24px,4vw,46px); border:1px solid color-mix(in srgb,var(--hobby-accent) 42%,transparent); border-radius:24px; background:radial-gradient(circle at 20% 20%,rgba(237,83,217,.18),transparent 38%),linear-gradient(145deg,rgba(46,10,43,.9),rgba(14,3,14,.96)); box-shadow:0 24px 70px rgba(0,0,0,.3); }
@@ -628,7 +638,7 @@ a.platform-badge:hover, a.platform-badge:focus-visible { color: white; transform
 .music-tags { margin:20px 0; }
 .content-note { margin:18px 0; padding:14px 16px; border-left:3px solid var(--hobby-accent); color:var(--muted); background:rgba(237,83,217,.07); font-size:.86rem; line-height:1.65; }
 .content-note b { color:var(--pearl); }
-.music-copy .demon-rating { display:flex; flex-wrap:wrap; gap:4px; align-items:center; color:var(--hobby-accent); }
+.music-copy .demon-rating { display:flex; flex-wrap:wrap; gap:8px; align-items:center; color:var(--hobby-accent); }
 .music-copy .demon-rating b { margin-left:6px; color:var(--pearl); font-size:.75rem; letter-spacing:.04em; }
 .music-actions { display:flex; flex-wrap:wrap; gap:10px; margin-top:24px; }
 .music-actions .button { min-width:0; margin:0; text-align:center; }
