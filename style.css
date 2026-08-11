@@ -329,7 +329,7 @@ a.platform-badge:hover, a.platform-badge:focus-visible { color: white; transform
 .project-jump-nav a:hover { color: white; background: rgba(255,45,154,.14); }
 .character-preview-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
 .character-preview { min-height: 260px; padding: 25px; text-align: center; border: 1px solid var(--line); border-radius: 20px; background: rgba(51,12,47,.55); }
-.character-preview > div { min-height: 130px; display: grid; place-items: center; color: rgba(255,213,235,.22); font: 5rem/1 Georgia,serif; }
+.character-preview > div { min-height: 130px; display: grid; place-items: center; color: rgba(255,213,235,.22); font: 5rem/1 Georgia,serif; user-select:none; }
 .character-preview h3 { margin: 12px 0 8px; font-size: 1.35rem; }
 .character-preview p { color: var(--muted); line-height: 1.6; }
 .platform-availability-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
@@ -716,7 +716,7 @@ a.platform-badge:hover, a.platform-badge:focus-visible { color: white; transform
 .beliefs-intro > p:last-child { color:var(--muted); line-height:1.8; }
 .belief-grid { display:grid; gap:14px; }
 .belief-grid article { position:relative; min-height:160px; padding:27px 28px 25px 82px; overflow:hidden; border:1px solid var(--line); border-radius:19px; background:linear-gradient(120deg,rgba(255,45,154,.085),rgba(22,5,20,.84)); }
-.belief-grid article > span { position:absolute; left:20px; top:20px; color:rgba(255,213,235,.2); font:2.8rem/1 "DM Serif Display",serif; }
+.belief-grid article > span { position:absolute; left:20px; top:20px; color:rgba(255,213,235,.2); font:2.8rem/1 "DM Serif Display",serif; user-select:none; }
 .belief-grid h3 { margin:0 0 10px; font-size:1.45rem; }
 .belief-grid p { margin:0; color:var(--muted); line-height:1.7; }
 .dna-layout { display:grid; grid-template-columns:minmax(0,1.35fr) minmax(250px,.65fr); gap:20px; }
@@ -946,6 +946,14 @@ html[data-theme="light"] .request-form select { color:#2d1523; background:#fffaf
 html[data-theme="light"] .request-form legend,
 html[data-theme="light"] .finder-form legend { color:#2d1523; }
 html[data-theme="light"] .secret-locket-trigger span { color:#fff0f7; background:#6d2445; }
+html[data-theme="light"] .secret-note-dialog { color:#fff7fc; }
+html[data-theme="light"] .secret-note-dialog .kicker { color:#f2a9cb; }
+html[data-theme="light"] .secret-note-card h2 { color:#fff7fc; }
+html[data-theme="light"] .secret-note-card p { color:#e9c8dc; }
+html[data-theme="light"] .secret-note-card .secret-signoff { color:#ffd5eb; }
+html[data-theme="light"] .secret-note-close { color:#ffd5eb; }
+html[data-theme="light"] .character-preview > div { color:#a12c65; }
+html[data-theme="light"] .belief-grid article > span { color:rgba(159,36,92,.68); }
 html[data-theme="light"] .timeline article::before { border-color:#f8eee8; }
 html[data-theme="light"] .music-copy h3 { color:#2d1523; }
 html[data-theme="light"] .music-meta > span:not(.status),
