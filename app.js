@@ -105,7 +105,7 @@ const hobbyNav = document.querySelector(".hobby-nav");
 const hobbyToggle = document.querySelector(".hobby-nav-toggle");
 
 const hobbyRoomCounts = {
-  playlist: "4 songs currently filed",
+  playlist: "5 songs currently filed",
   books: "0 books currently filed",
   games: "0 games currently filed",
   youtube: "0 videos currently filed",
@@ -119,6 +119,7 @@ const hobbyChoicePool = [
   { title: "oh well — Ariana Grande", room: "playlist", rating: 5, url: "playlist.html#oh-well" },
   { title: "DADDY — Victoria De Angelis feat. Ashnikko", room: "playlist", rating: 5, url: "playlist.html#daddy" },
   { title: "Slumber Party — Ashnikko feat. Princess Nokia", room: "playlist", rating: 5, url: "playlist.html#slumber-party" },
+  { title: "TRASTEVERE — Måneskin", room: "playlist", rating: 5, url: "playlist.html#trastevere" },
 ];
 
 const hobbyHeroCopy = document.querySelector(".hobby-room-hero > div");
