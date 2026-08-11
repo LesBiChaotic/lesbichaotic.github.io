@@ -355,6 +355,56 @@ document.querySelectorAll("[data-spotify-embed]").forEach(button => {
   button.setAttribute("aria-expanded", "false");
 });
 
+const hobbyMobileMedia = window.matchMedia("(max-width: 760px)");
+const hobbyCatalogLists = [...document.querySelectorAll("[data-hobby-list]")];
+const syncHobbyCatalogs = ({ resetEntries = false } = {}) => {
+  hobbyCatalogLists.forEach(list => {
+    const entries = [...list.querySelectorAll(":scope > [data-hobby-entry]")];
+    const visibleLimit = hobbyMobileMedia.matches ? 5 : 6;
+    const hashIndex = entries.findIndex(entry => entry.id && location.hash === `#${entry.id}`);
+    if (hashIndex >= visibleLimit) list.dataset.showAll = "true";
+    let button = list.nextElementSibling?.matches(".hobby-show-more") ? list.nextElementSibling : null;
+    if (entries.length > visibleLimit && !button) {
+      button = document.createElement("button");
+      button.className = "hobby-show-more";
+      button.type = "button";
+      button.addEventListener("click", () => {
+        list.dataset.showAll = list.dataset.showAll === "true" ? "false" : "true";
+        syncHobbyCatalogs();
+      });
+      list.insertAdjacentElement("afterend", button);
+    }
+
+    const showAll = list.dataset.showAll === "true";
+    entries.forEach((entry, index) => {
+      entry.hidden = !showAll && index >= visibleLimit;
+      if (resetEntries && entry.matches("details.hobby-catalog-entry")) {
+        entry.open = entry.id && location.hash === `#${entry.id}`;
+      }
+    });
+
+    if (button) {
+      button.hidden = entries.length <= visibleLimit;
+      button.textContent = showAll ? `Show first ${visibleLimit}` : `Show ${entries.length - visibleLimit} more`;
+      button.setAttribute("aria-expanded", String(showAll));
+    }
+  });
+};
+
+hobbyCatalogLists.forEach(list => {
+  list.querySelectorAll(":scope > details[data-hobby-entry]").forEach(entry => {
+    entry.addEventListener("toggle", () => {
+      if (!entry.open) return;
+      list.querySelectorAll(":scope > details[data-hobby-entry][open]").forEach(other => {
+        if (other !== entry) other.open = false;
+      });
+    });
+  });
+});
+hobbyMobileMedia.addEventListener("change", () => syncHobbyCatalogs({ resetEntries:true }));
+document.addEventListener("hobby:refresh", () => syncHobbyCatalogs());
+syncHobbyCatalogs({ resetEntries:true });
+
 document.querySelectorAll(".demon-scale").forEach(scale => {
   const drawer = document.createElement("details");
   drawer.className = "demon-scale-drawer";
