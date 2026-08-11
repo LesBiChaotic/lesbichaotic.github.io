@@ -688,6 +688,63 @@ a.platform-badge:hover, a.platform-badge:focus-visible { color: white; transform
 .demon-scale-drawer summary { padding:18px 21px; color:var(--hobby-accent); cursor:pointer; font-weight:900; }
 .demon-scale-drawer .demon-scale { margin:0; border:0; border-top:1px solid color-mix(in srgb,var(--hobby-accent) 22%,transparent); }
 
+/* About: a personality-first creator dossier with varied editorial rhythm. */
+.about-story-hero { min-height:clamp(560px,72vh,760px); }
+.about-story-hero .lede { max-width:700px; }
+.about-dossier { display:grid; grid-template-columns:minmax(210px,.62fr) minmax(0,1.35fr) minmax(220px,.72fr); gap:22px; align-items:stretch; }
+.dossier-portrait { position:relative; min-height:440px; padding:22px; display:flex; flex-direction:column; justify-content:space-between; overflow:hidden; border:1px solid rgba(255,213,235,.3); border-radius:25px 7px 25px 7px; background:radial-gradient(circle at 50% 36%,rgba(255,45,154,.2),transparent 38%),linear-gradient(145deg,#3c1035,#120411 72%); box-shadow:inset 0 0 35px rgba(255,255,255,.035),0 22px 55px rgba(0,0,0,.3); }
+.dossier-portrait::before,.dossier-portrait::after { content:"◆"; position:absolute; color:var(--pearl); text-shadow:0 0 8px white,0 0 15px var(--pink); }
+.dossier-portrait::before { top:17px; right:18px; }
+.dossier-portrait::after { bottom:17px; left:18px; }
+.dossier-portrait img { position:relative; z-index:1; width:115%; max-height:310px; margin:auto -7.5%; object-fit:contain; filter:drop-shadow(0 18px 20px rgba(0,0,0,.55)) drop-shadow(0 0 12px rgba(255,45,154,.22)); }
+.dossier-number,.dossier-status { position:relative; z-index:2; width:fit-content; color:var(--pearl); font-size:.68rem; font-weight:900; letter-spacing:.14em; text-transform:uppercase; }
+.dossier-status { align-self:flex-end; padding:8px 11px; border:1px solid rgba(255,213,235,.28); border-radius:99px; background:rgba(255,45,154,.09); }
+.dossier-copy { padding:clamp(26px,4vw,45px); border:1px solid var(--line); border-radius:9px 26px 9px 26px; background:linear-gradient(145deg,rgba(52,13,49,.78),rgba(18,4,18,.93)); }
+.dossier-copy h2 { margin:12px 0 20px; font-size:clamp(2.3rem,4.5vw,4rem); line-height:.98; }
+.dossier-copy h2 em { color:var(--pink); }
+.dossier-copy > p { color:var(--muted); line-height:1.78; }
+.dossier-copy .dossier-lede { color:var(--pearl); font-size:1.03rem; }
+.dossier-copy blockquote { margin:26px 0 0; padding:19px 20px; border-left:4px solid var(--pink); color:#fff4fb; background:rgba(255,45,154,.08); font-family:"DM Serif Display",serif; font-size:1.25rem; line-height:1.45; }
+.dossier-notes { margin:0; display:grid; gap:12px; }
+.dossier-notes div { padding:20px; border:1px solid rgba(255,213,235,.17); border-radius:17px; background:rgba(255,45,154,.045); }
+.dossier-notes dt { color:var(--pink); font-size:.67rem; font-weight:900; letter-spacing:.12em; text-transform:uppercase; }
+.dossier-notes dd { margin:9px 0 0; color:var(--muted); line-height:1.55; }
+.about-beliefs { display:grid; grid-template-columns:minmax(260px,.8fr) minmax(0,1.25fr); gap:clamp(30px,6vw,78px); align-items:start; }
+.beliefs-intro { position:sticky; top:35px; }
+.beliefs-intro h2 { margin:10px 0 20px; font-size:clamp(2.5rem,5vw,4.6rem); line-height:.96; }
+.beliefs-intro h2 em { color:var(--pink); }
+.beliefs-intro > p:last-child { color:var(--muted); line-height:1.8; }
+.belief-grid { display:grid; gap:14px; }
+.belief-grid article { position:relative; min-height:160px; padding:27px 28px 25px 82px; overflow:hidden; border:1px solid var(--line); border-radius:19px; background:linear-gradient(120deg,rgba(255,45,154,.085),rgba(22,5,20,.84)); }
+.belief-grid article > span { position:absolute; left:20px; top:20px; color:rgba(255,213,235,.2); font:2.8rem/1 "DM Serif Display",serif; }
+.belief-grid h3 { margin:0 0 10px; font-size:1.45rem; }
+.belief-grid p { margin:0; color:var(--muted); line-height:1.7; }
+.dna-layout { display:grid; grid-template-columns:minmax(0,1.35fr) minmax(250px,.65fr); gap:20px; }
+.dna-cloud { min-height:320px; padding:clamp(24px,4vw,40px); display:flex; flex-wrap:wrap; gap:11px; align-content:center; justify-content:center; border:1px solid rgba(255,213,235,.17); border-radius:28px 8px 28px 8px; background:radial-gradient(circle at center,rgba(255,45,154,.12),transparent 63%); }
+.dna-cloud span { padding:10px 15px; border:1px solid rgba(255,213,235,.24); border-radius:99px; color:var(--pearl); background:rgba(255,45,154,.06); font-size:.77rem; font-weight:900; }
+.dna-cloud span:nth-child(3n+1) { transform:rotate(-2deg); }
+.dna-cloud span:nth-child(3n+2) { transform:rotate(1.5deg); }
+.dna-note { min-height:320px; padding:31px; display:flex; flex-direction:column; justify-content:end; border:1px solid rgba(255,213,235,.25); border-radius:8px 25px 8px 25px; background:linear-gradient(155deg,rgba(75,15,62,.85),rgba(18,4,18,.96)); }
+.dna-note h3 { margin:13px 0 10px; font-size:clamp(2rem,3.5vw,3.15rem); }
+.dna-note p:last-child { color:var(--muted); line-height:1.7; }
+.haunting-heading { margin-bottom:30px; display:flex; justify-content:space-between; gap:25px; align-items:end; }
+.haunting-heading h2 { margin:8px 0 12px; font-size:clamp(2.4rem,5vw,4.4rem); line-height:.96; }
+.haunting-heading h2 em { color:var(--pink); }
+.haunting-heading p:last-child { color:var(--muted); }
+.haunting-heading .text-link { flex:0 0 auto; margin-bottom:10px; color:var(--pearl); font-weight:900; }
+.haunting-track { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:15px; }
+.haunting-track article { min-height:285px; padding:27px; display:flex; flex-direction:column; border:1px solid var(--line); border-radius:20px; background:linear-gradient(145deg,rgba(52,13,49,.72),rgba(18,4,18,.93)); }
+.haunting-track h3 { margin:17px 0 5px; font-size:1.65rem; }
+.haunting-track b { color:var(--pink); font-size:.8rem; line-height:1.5; }
+.haunting-track p { color:var(--muted); line-height:1.7; }
+.haunting-track a { width:fit-content; margin-top:auto; color:var(--pearl); font-size:.75rem; font-weight:900; }
+.evidence-notes { display:grid; grid-template-columns:repeat(6,1fr); gap:13px; align-items:start; }
+.evidence-notes p { position:relative; min-height:150px; margin:0; padding:28px 22px 22px; display:flex; align-items:center; color:var(--muted); background:linear-gradient(145deg,rgba(69,16,58,.82),rgba(27,6,25,.9)); border:1px solid rgba(255,213,235,.18); border-radius:4px 17px 4px 17px; line-height:1.6; box-shadow:0 15px 34px rgba(0,0,0,.2); }
+.evidence-notes p::before { content:"◆"; position:absolute; top:8px; left:50%; color:var(--pearl); text-shadow:0 0 8px white,0 0 13px var(--pink); font-size:.62rem; }
+.evidence-notes p:nth-child(1),.evidence-notes p:nth-child(4) { grid-column:span 2; transform:rotate(-1deg); }
+.evidence-notes p:nth-child(2),.evidence-notes p:nth-child(5) { grid-column:span 2; transform:rotate(1deg); }
+.evidence-notes p:nth-child(3) { grid-column:span 2; }
+
 /* Worksheet Cabinet: roomy phone-first forms with local drafts and portable backups. */
 .worksheet-hero { min-height:430px; }
 .worksheet-hero > div { max-width:760px; }
@@ -911,6 +968,16 @@ html[data-theme="light"] .worksheet-form textarea,
 html[data-theme="light"] .worksheet-form select,
 html[data-theme="light"] .worksheet-output textarea { color:#2d1523; background:#fffaf6; }
 html[data-theme="light"] .worksheet-form label { background:rgba(255,255,255,.4); }
+html[data-theme="light"] .dossier-portrait { background:radial-gradient(circle at 50% 36%,rgba(197,45,114,.16),transparent 38%),linear-gradient(145deg,#f1cdd8,#fff9f5 72%); box-shadow:0 18px 48px rgba(93,44,65,.13); }
+html[data-theme="light"] .dossier-copy,
+html[data-theme="light"] .belief-grid article,
+html[data-theme="light"] .dna-note,
+html[data-theme="light"] .haunting-track article,
+html[data-theme="light"] .evidence-notes p { border-color:rgba(119,52,81,.2); background:linear-gradient(145deg,rgba(255,250,246,.97),rgba(244,218,220,.95)); box-shadow:0 18px 48px rgba(93,44,65,.1); }
+html[data-theme="light"] .dossier-copy blockquote { color:#5c203d; background:rgba(197,45,114,.07); }
+html[data-theme="light"] .dossier-status { color:#672242; background:rgba(255,249,245,.82); }
+html[data-theme="light"] .dna-cloud { border-color:rgba(119,52,81,.2); background:radial-gradient(circle at center,rgba(197,45,114,.1),transparent 63%); }
+html[data-theme="light"] .dna-cloud span { color:#682342; border-color:rgba(119,52,81,.22); background:rgba(197,45,114,.055); }
 
 @media (prefers-color-scheme:light) {
   :root:not([data-theme]) { background:#f8eee8; }
@@ -963,6 +1030,29 @@ html[data-theme="light"] .worksheet-form label { background:rgba(255,255,255,.4)
   .worksheet-output { margin-inline:14px; }
   .worksheet-output-actions { display:grid; grid-template-columns:1fr; }
   .worksheet-output-actions .button { width:100%; min-height:48px; }
+  .about-page .section { padding:54px 0; }
+  .about-story-hero { min-height:610px; }
+  .about-story-hero h1 { font-size:clamp(2.65rem,13vw,3.75rem); }
+  .about-dossier { grid-template-columns:1fr; gap:14px; }
+  .dossier-portrait { min-height:370px; }
+  .dossier-portrait img { max-height:255px; }
+  .dossier-copy { padding:27px 22px; }
+  .dossier-copy h2 { font-size:clamp(2.35rem,12vw,3.3rem); }
+  .dossier-notes { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .dossier-notes div { padding:17px 14px; }
+  .dossier-notes dd { font-size:.83rem; }
+  .about-beliefs { grid-template-columns:1fr; gap:25px; }
+  .beliefs-intro { position:static; }
+  .belief-grid article { min-height:0; padding:70px 20px 22px; }
+  .belief-grid article > span { font-size:2.45rem; }
+  .dna-layout { grid-template-columns:1fr; }
+  .dna-cloud,.dna-note { min-height:280px; }
+  .haunting-heading { display:grid; align-items:start; }
+  .haunting-heading .text-link { margin:0; }
+  .haunting-track { width:100%; margin:0; padding:0; display:grid; grid-template-columns:1fr; gap:13px; overflow:visible; }
+  .haunting-track article { width:100%; min-height:0; }
+  .evidence-notes { grid-template-columns:1fr; gap:12px; }
+  .evidence-notes p,.evidence-notes p:nth-child(n) { grid-column:auto; min-height:115px; transform:none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
