@@ -55,7 +55,10 @@ document.body.insertAdjacentHTML("afterbegin", `
       <div class="herehaven-shortcut"><span>◌</span><b>HereHaven</b><small>I am still building this portal</small></div>
     </div>
   </aside>
-  <button class="menu-open" type="button" aria-controls="site-menu" aria-expanded="false"><span aria-hidden="true">♥</span><b>Menu</b></button>
+  <div class="floating-controls">
+    <button class="menu-open" type="button" aria-controls="site-menu" aria-expanded="false"><span aria-hidden="true">♥</span><b>Menu</b></button>
+    <button class="theme-toggle" type="button"><span aria-hidden="true">☀</span></button>
+  </div>
   <div class="menu-scrim" aria-hidden="true"></div>
 `);
 
@@ -87,8 +90,39 @@ const sidebar = document.querySelector(".sidebar");
 const openButton = document.querySelector(".menu-open");
 const closeButton = document.querySelector(".menu-close");
 const scrim = document.querySelector(".menu-scrim");
+const themeButton = document.querySelector(".theme-toggle");
 const hobbyNav = document.querySelector(".hobby-nav");
 const hobbyToggle = document.querySelector(".hobby-nav-toggle");
+
+const systemTheme = window.matchMedia("(prefers-color-scheme: light)");
+let temporaryTheme = null;
+
+function applyTheme() {
+  const theme = temporaryTheme || (systemTheme.matches ? "light" : "dark");
+  document.documentElement.dataset.theme = theme;
+  document.documentElement.style.colorScheme = theme;
+  const nextTheme = theme === "light" ? "dark" : "light";
+  themeButton.setAttribute("aria-label", `Switch to ${nextTheme} mode for this visit`);
+  themeButton.setAttribute("title", `Switch to ${nextTheme} mode for this visit`);
+  themeButton.querySelector("span").textContent = theme === "light" ? "☾" : "☀";
+  let themeMeta = document.querySelector('meta[name="theme-color"]');
+  if (!themeMeta) {
+    themeMeta = document.createElement("meta");
+    themeMeta.name = "theme-color";
+    document.head.append(themeMeta);
+  }
+  themeMeta.content = theme === "light" ? "#f8eee8" : "#10050f";
+}
+
+themeButton.addEventListener("click", () => {
+  const current = document.documentElement.dataset.theme;
+  temporaryTheme = current === "light" ? "dark" : "light";
+  applyTheme();
+});
+systemTheme.addEventListener("change", () => {
+  if (temporaryTheme === null) applyTheme();
+});
+applyTheme();
 
 function setMenu(open, remember = true) {
   document.body.classList.toggle("menu-is-open", open);
@@ -104,18 +138,18 @@ if (hobbyNav && hobbyToggle) {
   const hobbyActive = hobbyPages.some(([id]) => id === page);
   const rememberedHobby = localStorage.getItem("lb-hobby-menu-open");
   const hobbyDesktop = window.matchMedia("(min-width: 980px)");
-  const startExpanded = hobbyDesktop.matches || hobbyActive || rememberedHobby === "true";
+  const startExpanded = rememberedHobby === null ? hobbyDesktop.matches || hobbyActive : rememberedHobby === "true";
   hobbyNav.classList.toggle("is-expanded", startExpanded);
   hobbyToggle.setAttribute("aria-expanded", String(startExpanded));
   hobbyToggle.addEventListener("click", () => {
-    if (hobbyDesktop.matches) return;
     const expanded = !hobbyNav.classList.contains("is-expanded");
     hobbyNav.classList.toggle("is-expanded", expanded);
     hobbyToggle.setAttribute("aria-expanded", String(expanded));
     localStorage.setItem("lb-hobby-menu-open", String(expanded));
   });
   hobbyDesktop.addEventListener("change", event => {
-    const expanded = event.matches || hobbyActive || localStorage.getItem("lb-hobby-menu-open") === "true";
+    const remembered = localStorage.getItem("lb-hobby-menu-open");
+    const expanded = remembered === null ? event.matches || hobbyActive : remembered === "true";
     hobbyNav.classList.toggle("is-expanded", expanded);
     hobbyToggle.setAttribute("aria-expanded", String(expanded));
   });
