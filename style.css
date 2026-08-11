@@ -788,6 +788,8 @@ html[data-theme="light"] .project-jump-nav a:hover { color:#351725; background:r
 html[data-theme="light"] .request-form input:not([type="checkbox"]),
 html[data-theme="light"] .request-form textarea,
 html[data-theme="light"] .request-form select { color:#2d1523; background:#fffaf6; }
+html[data-theme="light"] .request-form legend,
+html[data-theme="light"] .finder-form legend { color:#2d1523; }
 html[data-theme="light"] .secret-locket-trigger span { color:#fff0f7; background:#6d2445; }
 html[data-theme="light"] .timeline article::before { border-color:#f8eee8; }
 html[data-theme="light"] .music-copy h3 { color:#2d1523; }
