@@ -13,6 +13,8 @@ const hobbyPages = [
   ["games", "games.html", "Games"],
   ["youtube", "youtube.html", "YouTube"],
   ["inspiration", "inspiration.html", "Inspiration Cabinet"],
+  ["screening", "screening-room.html", "The Screening Room", "youtube"],
+  ["illustrated", "illustrated-shelf.html", "The Illustrated Shelf", "books"],
   ["creators", "recommended-creators.html", "Recommended Creators", "about"],
 ];
 const visitorPages = [
@@ -78,6 +80,8 @@ const decorativeObjects = {
   games: ["assets/hobby-objects/games.webp", "Arcade joystick"],
   youtube: ["assets/hobby-objects/youtube.webp", "Gothic video screen"],
   inspiration: ["assets/hobby-objects/inspiration.webp", "Inspiration drawer cabinet"],
+  screening: ["assets/hobby-objects/youtube.webp", "Gothic viewing screen"],
+  illustrated: ["assets/hobby-objects/books.webp", "Jeweled open book"],
   creators: ["assets/objects/secret-heart-locket.webp", "Jeweled recommendation locket"],
 };
 const pageHero = document.querySelector(".hero-home, .page-hero");
@@ -93,6 +97,53 @@ const scrim = document.querySelector(".menu-scrim");
 const themeButton = document.querySelector(".theme-toggle");
 const hobbyNav = document.querySelector(".hobby-nav");
 const hobbyToggle = document.querySelector(".hobby-nav-toggle");
+
+const hobbyRoomCounts = {
+  playlist: "3 songs currently filed",
+  books: "0 books currently filed",
+  games: "0 games currently filed",
+  youtube: "0 videos currently filed",
+  inspiration: "0 fragments currently filed",
+  screening: "0 films or series currently filed",
+  illustrated: "0 illustrated stories currently filed",
+  creators: "0 creators currently featured",
+};
+
+const hobbyChoicePool = [
+  { title: "oh well — Ariana Grande", room: "playlist", rating: 5, url: "playlist.html#oh-well" },
+  { title: "DADDY — Victoria De Angelis feat. Ashnikko", room: "playlist", rating: 5, url: "playlist.html#daddy" },
+];
+
+const hobbyHeroCopy = document.querySelector(".hobby-room-hero > div");
+if (hobbyHeroCopy && hobbyRoomCounts[page]) {
+  hobbyHeroCopy.insertAdjacentHTML("beforeend", `<span class="room-inventory-count">${hobbyRoomCounts[page]}</span>`);
+  if (page !== "creators") {
+    hobbyHeroCopy.insertAdjacentHTML("beforeend", `
+      <div class="room-demon-picker">
+        <button class="button demon-choice-button" type="button" data-demon-pick="${page}">Let the demon cat choose</button>
+        <span class="demon-choice-result" role="status" aria-live="polite"></span>
+      </div>
+    `);
+  }
+}
+
+document.querySelectorAll("[data-demon-pick]").forEach(button => {
+  button.addEventListener("click", () => {
+    const requestedRoom = button.dataset.demonPick;
+    const eligible = hobbyChoicePool.filter(item => item.rating >= 4 && (requestedRoom === "all" || item.room === requestedRoom));
+    const result = button.parentElement.querySelector(".demon-choice-result");
+    if (!eligible.length) {
+      result.textContent = "The cat inspected the cabinet. Nothing eligible lives here yet.";
+      button.classList.add("cat-declined");
+      window.setTimeout(() => button.classList.remove("cat-declined"), 650);
+      return;
+    }
+    const choice = eligible[Math.floor(Math.random() * eligible.length)];
+    result.innerHTML = `Chosen: <a href="${choice.url}">${choice.title}</a>`;
+    button.classList.add("cat-approved");
+    window.setTimeout(() => button.classList.remove("cat-approved"), 650);
+  });
+});
 
 const systemTheme = window.matchMedia("(prefers-color-scheme: light)");
 let temporaryTheme = null;
