@@ -802,6 +802,11 @@ a.platform-badge:hover, a.platform-badge:focus-visible { color: white; transform
 .content-note b { color:var(--pearl); }
 .music-copy .demon-rating { display:flex; flex-wrap:wrap; gap:8px; align-items:center; color:var(--hobby-accent); }
 .music-copy .demon-rating b { margin-left:6px; color:var(--pearl); font-size:.75rem; letter-spacing:.04em; }
+.music-story { margin:20px 0; border:1px solid color-mix(in srgb,var(--hobby-accent) 30%,transparent); border-radius:15px; background:rgba(237,83,217,.055); }
+.music-story summary { padding:14px 16px; color:var(--pearl); cursor:pointer; font-weight:900; list-style-position:inside; }
+.music-story[open] summary { border-bottom:1px solid color-mix(in srgb,var(--hobby-accent) 25%,transparent); }
+.music-story div { padding:2px 16px 15px; }
+.music-story p { color:var(--muted); line-height:1.72; }
 .music-actions { display:flex; flex-wrap:wrap; gap:10px; margin-top:24px; }
 .music-actions .button { min-width:0; margin:0; text-align:center; }
 .spotify-load { font:inherit; cursor:pointer; }
@@ -958,6 +963,8 @@ html[data-theme="light"] .timeline article::before { border-color:#f8eee8; }
 html[data-theme="light"] .music-copy h3 { color:#2d1523; }
 html[data-theme="light"] .music-meta > span:not(.status),
 html[data-theme="light"] .music-tags span { color:#682342; background:rgba(197,45,114,.06); }
+html[data-theme="light"] .music-story { background:rgba(197,45,114,.055); }
+html[data-theme="light"] .music-story summary { color:#682342; }
 html[data-theme="light"] .room-inventory-count { color:#672242; background:rgba(255,249,245,.82); }
 html[data-theme="light"] .fixation-art-placeholder { color:#9f245c; background:rgba(197,45,114,.07); }
 html[data-theme="light"] .fixation-copy p,
