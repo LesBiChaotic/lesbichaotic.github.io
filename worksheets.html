@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Private, phone-friendly worksheets for preparing LesBiChaotic site updates.">
+  <title>Worksheet Cabinet — LesBiChaotic</title>
+  <script>document.documentElement.dataset.theme=window.matchMedia("(prefers-color-scheme: light)").matches?"light":"dark";</script>
+  <link rel="stylesheet" href="style.css?v=worksheets1">
+  <script src="app.js?v=worksheets1" defer></script>
+  <script src="worksheets.js?v=worksheets1" defer></script>
+</head>
+<body data-page="worksheets" class="worksheet-page">
+<main class="site-main">
+  <div class="page-wrap">
+    <header class="page-hero art-hero worksheet-hero" style="--hero-image:url('assets/header-resources.webp')">
+      <div><p class="kicker">The creator desk</p><h1>Worksheet <em>Cabinet.</em></h1><p class="lede">Choose one room, answer only what is useful, and let your phone remember the mess. When you are ready, the cabinet turns it into a clean packet you can paste back to me.</p></div>
+    </header>
+
+    <section class="worksheet-privacy" aria-label="Worksheet privacy">
+      <strong>Private by default.</strong>
+      <p>Your answers stay in this browser. Nothing is submitted to the public site, GitHub, or another person when you type. Export a backup before clearing browser data or changing devices.</p>
+    </section>
+
+    <section class="worksheet-shell" data-worksheet-app>
+      <div class="worksheet-toolbar">
+        <label for="worksheet-room"><span>Choose a worksheet</span><select id="worksheet-room" data-worksheet-room></select></label>
+        <p class="worksheet-save-status" data-save-status role="status" aria-live="polite">Choose a room to begin.</p>
+      </div>
+
+      <div class="worksheet-intro" data-worksheet-intro></div>
+      <form class="worksheet-form" data-worksheet-form novalidate></form>
+
+      <div class="worksheet-actions" aria-label="Worksheet actions">
+        <button class="button primary" type="button" data-generate-submission>Make paste-ready submission</button>
+        <button class="button" type="button" data-export-backup>Export all drafts</button>
+        <button class="button" type="button" data-import-backup>Import backup</button>
+        <button class="text-button danger-button" type="button" data-clear-worksheet>Clear this worksheet</button>
+        <input type="file" accept="application/json,.json" hidden data-import-file>
+      </div>
+
+      <section class="worksheet-output" data-output-section hidden tabindex="-1" aria-labelledby="worksheet-output-title">
+        <p class="kicker">Ready to carry away</p>
+        <h2 id="worksheet-output-title">Your paste-ready <em>submission.</em></h2>
+        <p>Copy this entire block into our chat. Empty answers are omitted, so the packet contains the useful evidence rather than acres of ceremonial silence.</p>
+        <textarea readonly data-submission-output aria-label="Paste-ready worksheet submission"></textarea>
+        <div class="worksheet-output-actions">
+          <button class="button primary" type="button" data-copy-submission>Copy submission</button>
+          <button class="button" type="button" data-download-submission>Download as text</button>
+        </div>
+        <p class="worksheet-copy-status" data-copy-status role="status" aria-live="polite"></p>
+      </section>
+    </section>
+  </div>
+  <footer class="site-footer"><b>LesBiChaotic ♥ Worksheet Cabinet</b><span>Joy remains exempt from unpaid clerical warfare.</span></footer>
+</main>
+</body>
+</html>

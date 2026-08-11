@@ -23,6 +23,9 @@ const visitorPages = [
   ["resources", "resources.html", "▤", "Creator Resources"],
   ["requests", "requests.html", "✉", "Requests & Suggestions"],
 ];
+const creatorDeskPages = [
+  ["worksheets", "worksheets.html", "▤", "Worksheet Cabinet"],
+];
 
 const page = document.body.dataset.page || "home";
 const savedMenu = localStorage.getItem("lb-menu-open");
@@ -49,6 +52,8 @@ document.body.insertAdjacentHTML("afterbegin", `
           ${hobbyPages.map(([id, href, label, icon = id]) => `<a href="${href}" ${id === page ? 'aria-current="page"' : ""}><span class="nav-icon" aria-hidden="true"><picture><source srcset="assets/${id === "creators" ? "menu-icons" : "hobby-icons"}/${icon}.webp" type="image/webp"><img src="assets/${id === "creators" ? "menu-icons" : "hobby-icons"}/${icon}.png" alt=""></picture></span><b>${label}</b></a>`).join("")}
         </div>
       </div>
+      <div class="visitor-divider" aria-hidden="true"><span>Creator Desk</span></div>
+      ${creatorDeskPages.map(([id, href, icon, label]) => `<a href="${href}" ${id === page ? 'aria-current="page"' : ""}><span class="nav-icon" aria-hidden="true"><picture><source srcset="assets/menu-icons/resources.webp" type="image/webp"><img src="assets/menu-icons/resources.png" alt=""></picture></span><b>${label}</b></a>`).join("")}
       <div class="visitor-divider" aria-hidden="true"><span>Visitor Tools</span></div>
       ${visitorPages.map(([id, href, icon, label]) => `<a href="${href}" ${id === page ? 'aria-current="page"' : ""}><span class="nav-icon" aria-hidden="true"><picture><source srcset="assets/menu-icons/${id}.webp" type="image/webp"><img src="assets/menu-icons/${id}.png" alt=""></picture></span><b>${label}</b></a>`).join("")}
     </nav>
@@ -83,6 +88,7 @@ const decorativeObjects = {
   screening: ["assets/hobby-objects/youtube.webp", "Gothic viewing screen"],
   illustrated: ["assets/hobby-objects/books.webp", "Jeweled open book"],
   creators: ["assets/objects/secret-heart-locket.webp", "Jeweled recommendation locket"],
+  worksheets: ["assets/objects/ribbon-folder.webp", "Ribbon-tied worksheet folder"],
 };
 const pageHero = document.querySelector(".hero-home, .page-hero");
 if (pageHero && decorativeObjects[page]) {
@@ -346,6 +352,18 @@ document.querySelectorAll("[data-spotify-embed]").forEach(button => {
     button.setAttribute("aria-expanded", "true");
   });
   button.setAttribute("aria-expanded", "false");
+});
+
+document.querySelectorAll(".demon-scale").forEach(scale => {
+  const drawer = document.createElement("details");
+  drawer.className = "demon-scale-drawer";
+  const summary = document.createElement("summary");
+  summary.textContent = "Open the demon-cat rating guide";
+  const body = document.createElement("div");
+  body.className = "demon-scale";
+  [...scale.childNodes].forEach(node => body.append(node));
+  drawer.append(summary, body);
+  scale.replaceWith(drawer);
 });
 
 document.querySelectorAll("[data-year]").forEach(node => node.textContent = new Date().getFullYear());

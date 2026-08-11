@@ -681,6 +681,48 @@ a.platform-badge:hover, a.platform-badge:focus-visible { color: white; transform
 .cat-rating-5 { --score:100%; }
 .cat-rating-large { --mark-width:210px; }
 
+.hobby-jump-nav { position:sticky; z-index:8; top:12px; width:fit-content; max-width:calc(100% - 24px); margin:-18px auto 26px; padding:8px; display:flex; flex-wrap:wrap; justify-content:center; gap:7px; border:1px solid var(--line); border-radius:999px; background:rgba(18,4,18,.91); box-shadow:0 12px 32px rgba(0,0,0,.32); backdrop-filter:blur(13px); }
+.hobby-jump-nav a { min-height:38px; display:inline-flex; align-items:center; padding:8px 13px; border-radius:999px; color:var(--pearl); font-size:.72rem; font-weight:900; letter-spacing:.05em; text-transform:uppercase; }
+.hobby-jump-nav a:hover,.hobby-jump-nav a:focus-visible { color:white; background:rgba(255,45,154,.16); }
+.demon-scale-drawer { margin-top:18px; overflow:hidden; border-left:4px solid var(--hobby-accent); background:var(--hobby-soft); }
+.demon-scale-drawer summary { padding:18px 21px; color:var(--hobby-accent); cursor:pointer; font-weight:900; }
+.demon-scale-drawer .demon-scale { margin:0; border:0; border-top:1px solid color-mix(in srgb,var(--hobby-accent) 22%,transparent); }
+
+/* Worksheet Cabinet: roomy phone-first forms with local drafts and portable backups. */
+.worksheet-hero { min-height:430px; }
+.worksheet-hero > div { max-width:760px; }
+.worksheet-privacy { margin:20px 0; padding:23px 26px; border:1px solid rgba(255,213,235,.23); border-left:4px solid var(--pink); border-radius:0 18px 18px 0; background:rgba(255,45,154,.07); }
+.worksheet-privacy strong { color:var(--pearl); }
+.worksheet-privacy p { margin:7px 0 0; color:var(--muted); line-height:1.7; }
+.worksheet-shell { margin:24px 0 70px; overflow:hidden; border:1px solid var(--line); border-radius:26px; background:linear-gradient(145deg,rgba(52,13,49,.8),rgba(15,3,14,.96)); box-shadow:0 28px 75px rgba(0,0,0,.3); }
+.worksheet-toolbar { position:sticky; z-index:6; top:10px; padding:22px clamp(20px,4vw,38px); display:grid; grid-template-columns:minmax(0,1fr) auto; gap:18px; align-items:end; border-bottom:1px solid var(--line); background:rgba(20,5,20,.94); backdrop-filter:blur(15px); }
+.worksheet-toolbar label { display:grid; gap:8px; }
+.worksheet-toolbar label span { color:var(--pearl); font-size:.75rem; font-weight:900; letter-spacing:.09em; text-transform:uppercase; }
+.worksheet-toolbar select { width:100%; min-height:50px; padding:12px 44px 12px 14px; border:1px solid rgba(255,213,235,.3); border-radius:13px; color:white; background:#170516; font:700 1rem/1.3 Inter,sans-serif; }
+.worksheet-save-status { max-width:290px; margin:0; color:var(--muted); font-size:.78rem; line-height:1.5; text-align:right; }
+.worksheet-intro { padding:clamp(28px,5vw,48px) clamp(20px,5vw,48px) 15px; }
+.worksheet-intro h2 { margin:10px 0; font-size:clamp(2rem,5vw,3.35rem); }
+.worksheet-intro p:last-child { max-width:760px; color:var(--muted); line-height:1.7; }
+.worksheet-form { padding:15px clamp(20px,5vw,48px) 36px; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; }
+.worksheet-form label { min-width:0; display:flex; flex-direction:column; gap:8px; padding:19px; border:1px solid rgba(255,213,235,.16); border-radius:17px; background:rgba(255,255,255,.025); }
+.worksheet-form label:has(textarea) { grid-column:span 2; }
+.worksheet-form label strong { color:var(--pearl); line-height:1.35; }
+.worksheet-form label span { color:var(--muted); font-size:.75rem; line-height:1.5; }
+.worksheet-form input,.worksheet-form textarea,.worksheet-form select { width:100%; min-height:50px; margin-top:auto; padding:13px 14px; border:1px solid rgba(255,213,235,.27); border-radius:12px; color:white; background:#130412; font:inherit; font-size:16px; line-height:1.5; }
+.worksheet-form textarea { min-height:145px; resize:vertical; }
+.worksheet-form input:focus,.worksheet-form textarea:focus,.worksheet-form select:focus,.worksheet-toolbar select:focus { outline:3px solid color-mix(in srgb,var(--pink) 72%,white); outline-offset:2px; border-color:transparent; }
+.worksheet-actions { padding:24px clamp(20px,5vw,48px) 36px; display:flex; flex-wrap:wrap; gap:11px; align-items:center; border-top:1px solid var(--line); }
+.worksheet-actions .button,.worksheet-output-actions .button { margin:0; font:900 .78rem/1 Inter,sans-serif; cursor:pointer; }
+.text-button { min-height:44px; padding:10px 13px; border:0; background:transparent; font:800 .76rem/1 Inter,sans-serif; cursor:pointer; }
+.danger-button { margin-left:auto; color:#ff9ac0; }
+.danger-button:hover,.danger-button:focus-visible { color:white; text-decoration:underline; }
+.worksheet-output { margin:0 clamp(20px,5vw,48px) 42px; padding:clamp(22px,4vw,38px); border:1px solid rgba(255,213,235,.28); border-radius:21px; background:rgba(255,45,154,.07); scroll-margin-top:100px; }
+.worksheet-output h2 { margin:10px 0; }
+.worksheet-output > p:not(.kicker) { color:var(--muted); line-height:1.7; }
+.worksheet-output textarea { width:100%; min-height:360px; padding:18px; border:1px solid rgba(255,213,235,.3); border-radius:14px; color:white; background:#0d020c; font:500 .88rem/1.65 ui-monospace,SFMono-Regular,Consolas,monospace; resize:vertical; }
+.worksheet-output-actions { display:flex; flex-wrap:wrap; gap:10px; margin-top:15px; }
+.worksheet-copy-status { min-height:1.5em; margin-bottom:0 !important; color:var(--pearl) !important; font-weight:800; }
+
 /* Playlist entries: official artwork inside a site-native jeweled cabinet. */
 .now-listening-card { display:grid; grid-template-columns:minmax(220px,320px) minmax(0,1fr); gap:clamp(24px,5vw,58px); align-items:center; padding:clamp(24px,4vw,46px); border:1px solid color-mix(in srgb,var(--hobby-accent) 42%,transparent); border-radius:24px; background:radial-gradient(circle at 20% 20%,rgba(237,83,217,.18),transparent 38%),linear-gradient(145deg,rgba(46,10,43,.9),rgba(14,3,14,.96)); box-shadow:0 24px 70px rgba(0,0,0,.3); }
 .music-entry-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:20px; }
@@ -857,6 +899,18 @@ html[data-theme="light"] .fixation-copy p,
 html[data-theme="light"] .runner-up-card p,
 html[data-theme="light"] .compact-entry-body,
 html[data-theme="light"] .compact-hobby-entry summary i { color:#725665; }
+html[data-theme="light"] .hobby-jump-nav { background:rgba(255,249,245,.93); box-shadow:0 12px 30px rgba(93,44,65,.16); }
+html[data-theme="light"] .hobby-jump-nav a { color:#672242; }
+html[data-theme="light"] .demon-scale-drawer,
+html[data-theme="light"] .worksheet-privacy { background:rgba(197,45,114,.065); }
+html[data-theme="light"] .worksheet-shell { background:linear-gradient(145deg,rgba(255,250,246,.97),rgba(244,218,220,.95)); box-shadow:0 18px 48px rgba(93,44,65,.13); }
+html[data-theme="light"] .worksheet-toolbar { background:rgba(255,249,245,.95); }
+html[data-theme="light"] .worksheet-toolbar select,
+html[data-theme="light"] .worksheet-form input,
+html[data-theme="light"] .worksheet-form textarea,
+html[data-theme="light"] .worksheet-form select,
+html[data-theme="light"] .worksheet-output textarea { color:#2d1523; background:#fffaf6; }
+html[data-theme="light"] .worksheet-form label { background:rgba(255,255,255,.4); }
 
 @media (prefers-color-scheme:light) {
   :root:not([data-theme]) { background:#f8eee8; }
@@ -876,10 +930,10 @@ html[data-theme="light"] .compact-hobby-entry summary i { color:#725665; }
   .hobby-room-hero h1 { max-width:100%; font-size:clamp(2.4rem,12.5vw,3.35rem); line-height:.96; overflow-wrap:anywhere; }
   .hobby-room-hero .kicker { max-width:100%; margin-inline:auto; letter-spacing:.15em; overflow-wrap:anywhere; }
   .hobby-room-hero .lede { max-width:100%; margin-inline:auto; }
-  .hobby-landing-hero picture img { width:min(78vw,350px); max-height:370px; }
-  .hobby-room-hero > img { width:min(72vw,290px); max-height:280px; }
-  .hobby-room-hero > picture { width:min(82vw,330px); }
-  .hobby-room-hero > picture img { max-height:330px; }
+  .hobby-landing-hero picture img { width:min(68vw,300px); max-height:320px; }
+  .hobby-room-hero > img { width:min(64vw,260px); max-height:250px; }
+  .hobby-room-hero > picture { width:min(72vw,290px); }
+  .hobby-room-hero > picture img { max-height:290px; }
   .hobby-room-grid,.hobby-dashboard-grid,.hobby-newest-grid,.hobby-placeholder-grid,.creator-platform-grid { grid-template-columns:1fr; }
   .fixation-layout,.main-fixation-card { grid-template-columns:1fr; }
   .fixation-art-placeholder { width:min(100%,300px); margin-inline:auto; }
@@ -897,6 +951,18 @@ html[data-theme="light"] .compact-hobby-entry summary i { color:#725665; }
   .music-actions { display:grid; grid-template-columns:1fr; }
   .music-actions .button { width:100%; }
   .hobby-room-card,.hobby-room-card:nth-child(1),.hobby-room-card:nth-child(2) { grid-column:auto; min-height:390px; }
+  .hobby-jump-nav { position:relative; top:auto; width:100%; max-width:100%; margin:12px auto 6px; border-radius:18px; }
+  .hobby-jump-nav a { flex:1 1 42%; justify-content:center; text-align:center; }
+  .worksheet-hero { min-height:400px; }
+  .worksheet-toolbar { top:6px; grid-template-columns:1fr; gap:9px; padding:16px; }
+  .worksheet-save-status { max-width:none; text-align:left; }
+  .worksheet-form { grid-template-columns:1fr; padding-inline:14px; }
+  .worksheet-form label,.worksheet-form label:has(textarea) { grid-column:auto; padding:16px; }
+  .worksheet-actions { display:grid; grid-template-columns:1fr; padding-inline:14px; }
+  .worksheet-actions .button,.worksheet-actions .text-button { width:100%; min-height:48px; margin:0; }
+  .worksheet-output { margin-inline:14px; }
+  .worksheet-output-actions { display:grid; grid-template-columns:1fr; }
+  .worksheet-output-actions .button { width:100%; min-height:48px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
