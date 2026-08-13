@@ -68,6 +68,7 @@ document.body.insertAdjacentHTML("afterbegin", `
   </aside>
   <div class="floating-controls">
     <button class="menu-open" type="button" aria-controls="site-menu" aria-expanded="false"><span aria-hidden="true">♥</span><b>Menu</b></button>
+    <button class="font-toggle" type="button" aria-pressed="false"><span aria-hidden="true">Aa</span></button>
     <button class="theme-toggle" type="button"><span aria-hidden="true">☀</span></button>
   </div>
   <div class="menu-scrim" aria-hidden="true"></div>
@@ -137,6 +138,7 @@ const openButton = document.querySelector(".menu-open");
 const closeButton = document.querySelector(".menu-close");
 const scrim = document.querySelector(".menu-scrim");
 const themeButton = document.querySelector(".theme-toggle");
+const fontButton = document.querySelector(".font-toggle");
 const hobbyNav = document.querySelector(".hobby-nav");
 const hobbyToggle = document.querySelector(".hobby-nav-toggle");
 const installDialog = document.querySelector("#pwa-install-dialog");
@@ -261,6 +263,25 @@ const hobbyChoicePool = [
   { title: "Slumber Party — Ashnikko feat. Princess Nokia", room: "playlist", rating: 5, url: "playlist.html#slumber-party" },
   { title: "TRASTEVERE — Måneskin", room: "playlist", rating: 5, url: "playlist.html#trastevere" },
 ];
+
+const FONT_STORAGE_KEY = "lb-font-mode";
+const savedFontMode = localStorage.getItem(FONT_STORAGE_KEY);
+let fontMode = savedFontMode === "system" ? "system" : "site";
+
+function applyFontMode() {
+  const useSystemFont = fontMode === "system";
+  document.documentElement.dataset.font = fontMode;
+  fontButton.setAttribute("aria-pressed", String(useSystemFont));
+  fontButton.setAttribute("aria-label", useSystemFont ? "Restore LesBiChaotic fonts" : "Use phone font");
+  fontButton.setAttribute("title", useSystemFont ? "Phone font is on — restore site fonts" : "Use phone font");
+}
+
+fontButton.addEventListener("click", () => {
+  fontMode = fontMode === "system" ? "site" : "system";
+  localStorage.setItem(FONT_STORAGE_KEY, fontMode);
+  applyFontMode();
+});
+applyFontMode();
 
 const hobbyHeroCopy = document.querySelector(".hobby-room-hero > div");
 if (hobbyHeroCopy && hobbyRoomCounts[page]) {

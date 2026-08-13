@@ -1,4 +1,4 @@
-const CACHE_VERSION = "pwa-20260813-1";
+const CACHE_VERSION = "pwa-20260813-2";
 const CACHE_PREFIX = "lesbichaotic-";
 const SHELL_CACHE = `${CACHE_PREFIX}shell-${CACHE_VERSION}`;
 const NETWORK_CACHE = `${CACHE_PREFIX}network-${CACHE_VERSION}`;
@@ -30,9 +30,9 @@ const PRECACHE_PATHS = [
   "./worksheets.html",
   "./youtube.html",
   "./manifest.webmanifest",
-  "./style.css?v=pwa-20260813-1",
-  "./app.js?v=pwa-20260813-1",
-  "./worksheets.js?v=pwa-20260813-1",
+  "./style.css?v=pwa-20260813-2",
+  "./app.js?v=pwa-20260813-2",
+  "./worksheets.js?v=pwa-20260813-2",
   "./assets/lesbichaotic-emblem.webp?v=draft6",
   "./assets/fonts/dm-serif-display-regular.woff2",
   "./assets/fonts/dm-serif-display-italic.woff2",
