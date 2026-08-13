@@ -1,0 +1,65 @@
+{
+  "id": "./",
+  "name": "LesBiChaotic — Soft Hearts. Sharp Teeth.",
+  "short_name": "LesBiChaotic",
+  "description": "Queer fiction, dreamy disasters, creative resources, and delightfully questionable plot decisions.",
+  "lang": "en",
+  "dir": "ltr",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#10050f",
+  "theme_color": "#10050f",
+  "categories": ["entertainment", "lifestyle", "books"],
+  "prefer_related_applications": false,
+  "icons": [
+    {
+      "src": "assets/pwa/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/pwa/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/pwa/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Scenarios",
+      "short_name": "Scenarios",
+      "description": "Browse LesBiChaotic scenarios and future fictional problems.",
+      "url": "./scenarios.html",
+      "icons": [{ "src": "assets/menu-icons/scenarios.png", "sizes": "112x112", "type": "image/png" }]
+    },
+    {
+      "name": "Hobby Hub",
+      "short_name": "Hobby Hub",
+      "description": "Open the cabinet of current fixations and recommendations.",
+      "url": "./hobby.html",
+      "icons": [{ "src": "assets/hobby-icons/hobby.png", "sizes": "112x112", "type": "image/png" }]
+    },
+    {
+      "name": "Worksheet Cabinet",
+      "short_name": "Worksheets",
+      "description": "Open the private, autosaving mobile worksheet cabinet.",
+      "url": "./worksheets.html",
+      "icons": [{ "src": "assets/menu-icons/resources.png", "sizes": "112x112", "type": "image/png" }]
+    },
+    {
+      "name": "Update Log",
+      "short_name": "Updates",
+      "description": "Read the latest meaningful site and scenario changes.",
+      "url": "./updates.html",
+      "icons": [{ "src": "assets/menu-icons/updates.png", "sizes": "112x112", "type": "image/png" }]
+    }
+  ]
+}

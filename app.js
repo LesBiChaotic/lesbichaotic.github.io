@@ -56,6 +56,10 @@ document.body.insertAdjacentHTML("afterbegin", `
       ${creatorDeskPages.map(([id, href, icon, label]) => `<a href="${href}" ${id === page ? 'aria-current="page"' : ""}><span class="nav-icon" aria-hidden="true"><picture><source srcset="assets/menu-icons/resources.webp" type="image/webp"><img src="assets/menu-icons/resources.png" alt=""></picture></span><b>${label}</b></a>`).join("")}
       <div class="visitor-divider" aria-hidden="true"><span>Visitor Tools</span></div>
       ${visitorPages.map(([id, href, icon, label]) => `<a href="${href}" ${id === page ? 'aria-current="page"' : ""}><span class="nav-icon" aria-hidden="true"><picture><source srcset="assets/menu-icons/${id}.webp" type="image/webp"><img src="assets/menu-icons/${id}.png" alt=""></picture></span><b>${label}</b></a>`).join("")}
+      <button class="pwa-install-trigger" type="button" aria-haspopup="dialog" aria-controls="pwa-install-dialog" data-pwa-install-open>
+        <span class="nav-icon" aria-hidden="true"><img src="assets/pwa/icon-192.png" alt=""></span>
+        <span><b data-pwa-install-label>Install this cabinet</b><small data-pwa-install-subtitle>Open it like an app</small></span>
+      </button>
     </nav>
     <div class="platform-shortcuts" aria-label="Find LesBiChaotic elsewhere">
       <a class="fictionlab-shortcut" href="https://fictionlab.ai/user/019fdc53-fc9c-7481-b6f7-abb26f642a36" target="_blank" rel="noopener noreferrer"><span>✦</span><b>Find me on FictionLab</b><small>I am new—come watch the chaos grow ↗</small></a>
@@ -67,6 +71,38 @@ document.body.insertAdjacentHTML("afterbegin", `
     <button class="theme-toggle" type="button"><span aria-hidden="true">☀</span></button>
   </div>
   <div class="menu-scrim" aria-hidden="true"></div>
+  <dialog class="pwa-install-dialog" id="pwa-install-dialog" aria-labelledby="pwa-install-title">
+    <div class="pwa-install-card">
+      <button class="pwa-install-close" type="button" aria-label="Close installation instructions" data-pwa-install-close>×</button>
+      <img class="pwa-install-icon" src="assets/pwa/icon-192.png" alt="" aria-hidden="true">
+      <p class="kicker">Pocket-sized queer menace</p>
+      <h2 id="pwa-install-title">Install <em>LesBiChaotic.</em></h2>
+      <p>Give the jeweled cabinet its own app icon and standalone window. No account, app store, or ritual circle required.</p>
+      <section data-pwa-install-panel="ready" hidden>
+        <h3>Android is ready</h3>
+        <p>Your browser can install the app directly.</p>
+        <button class="button pwa-install-now" type="button" data-pwa-install-now>Install now</button>
+      </section>
+      <section data-pwa-install-panel="ios" hidden>
+        <h3>On iPhone or iPad</h3>
+        <ol>
+          <li>Open this page in Safari.</li>
+          <li>Tap the <b>Share</b> button.</li>
+          <li>Choose <b>Add to Home Screen</b>.</li>
+          <li>Tap <b>Add</b>. The cabinet will open in app mode afterward.</li>
+        </ol>
+      </section>
+      <section data-pwa-install-panel="manual" hidden>
+        <h3>Use your browser menu</h3>
+        <p>Look for <b>Install app</b> or <b>Add to Home screen</b>. If neither appears yet, browse for a moment and check again.</p>
+      </section>
+      <section data-pwa-install-panel="installed" hidden>
+        <h3>Already haunting your home screen</h3>
+        <p>Standalone app mode is active. The browser furniture has been politely exorcised.</p>
+      </section>
+      <p class="pwa-install-status" role="status" aria-live="polite" data-pwa-install-status></p>
+    </div>
+  </dialog>
 `);
 
 const decorativeObjects = {
@@ -103,6 +139,110 @@ const scrim = document.querySelector(".menu-scrim");
 const themeButton = document.querySelector(".theme-toggle");
 const hobbyNav = document.querySelector(".hobby-nav");
 const hobbyToggle = document.querySelector(".hobby-nav-toggle");
+const installDialog = document.querySelector("#pwa-install-dialog");
+const installOpenButton = document.querySelector("[data-pwa-install-open]");
+const installCloseButton = document.querySelector("[data-pwa-install-close]");
+const installNowButton = document.querySelector("[data-pwa-install-now]");
+const installLabel = document.querySelector("[data-pwa-install-label]");
+const installSubtitle = document.querySelector("[data-pwa-install-subtitle]");
+const installStatus = document.querySelector("[data-pwa-install-status]");
+const installPanels = [...document.querySelectorAll("[data-pwa-install-panel]")];
+const standaloneMedia = window.matchMedia("(display-mode: standalone)");
+const appleMobile = /iphone|ipad|ipod/i.test(navigator.userAgent)
+  || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+let deferredInstallPrompt = null;
+
+const appIsStandalone = () => standaloneMedia.matches || window.navigator.standalone === true;
+
+function selectInstallPanel(panelName) {
+  installPanels.forEach(panel => {
+    panel.hidden = panel.dataset.pwaInstallPanel !== panelName;
+  });
+}
+
+function syncInstallUI() {
+  const standalone = appIsStandalone();
+  document.documentElement.classList.toggle("is-standalone", standalone);
+
+  if (standalone) {
+    installLabel.textContent = "App mode active";
+    installSubtitle.textContent = "The browser furniture is gone";
+    selectInstallPanel("installed");
+    return;
+  }
+
+  if (deferredInstallPrompt) {
+    installLabel.textContent = "Install LesBiChaotic";
+    installSubtitle.textContent = "Open it like an app";
+    selectInstallPanel("ready");
+    return;
+  }
+
+  if (appleMobile) {
+    installLabel.textContent = "iPhone install guide";
+    installSubtitle.textContent = "Safari → Share → Add to Home Screen";
+    selectInstallPanel("ios");
+    return;
+  }
+
+  installLabel.textContent = "Install this cabinet";
+  installSubtitle.textContent = "Open it like an app";
+  selectInstallPanel("manual");
+}
+
+installOpenButton.addEventListener("click", () => {
+  syncInstallUI();
+  installStatus.textContent = "";
+  installDialog.showModal();
+});
+
+installCloseButton.addEventListener("click", () => installDialog.close());
+installDialog.addEventListener("click", event => {
+  if (event.target === installDialog) installDialog.close();
+});
+installDialog.addEventListener("close", () => installOpenButton.focus());
+
+window.addEventListener("beforeinstallprompt", event => {
+  event.preventDefault();
+  deferredInstallPrompt = event;
+  syncInstallUI();
+});
+
+installNowButton.addEventListener("click", async () => {
+  if (!deferredInstallPrompt) {
+    syncInstallUI();
+    return;
+  }
+
+  const promptEvent = deferredInstallPrompt;
+  deferredInstallPrompt = null;
+  await promptEvent.prompt();
+  const choice = await promptEvent.userChoice;
+  installStatus.textContent = choice.outcome === "accepted"
+    ? "Installation accepted. The cabinet is moving in."
+    : "Installation dismissed. No offense taken; the button will wait here.";
+  syncInstallUI();
+});
+
+window.addEventListener("appinstalled", () => {
+  deferredInstallPrompt = null;
+  syncInstallUI();
+  installStatus.textContent = "Installed. The demon cat has claimed a square of your home screen.";
+});
+
+standaloneMedia.addEventListener("change", syncInstallUI);
+syncInstallUI();
+
+if ("serviceWorker" in navigator && location.protocol !== "file:") {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./service-worker.js", { scope: "./", updateViaCache: "none" })
+      .catch(error => console.warn("Offline mode could not be prepared.", error));
+  });
+
+  navigator.serviceWorker.addEventListener("controllerchange", () => {
+    installStatus.textContent = "The offline cabinet has been refreshed with the newest files.";
+  });
+}
 
 const hobbyRoomCounts = {
   playlist: "5 songs currently filed",
