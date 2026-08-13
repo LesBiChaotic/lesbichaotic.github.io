@@ -1,4 +1,4 @@
-const CACHE_VERSION = "pwa-20260813-2";
+const CACHE_VERSION = "pwa-20260813-3";
 const CACHE_PREFIX = "lesbichaotic-";
 const SHELL_CACHE = `${CACHE_PREFIX}shell-${CACHE_VERSION}`;
 const NETWORK_CACHE = `${CACHE_PREFIX}network-${CACHE_VERSION}`;
@@ -30,9 +30,9 @@ const PRECACHE_PATHS = [
   "./worksheets.html",
   "./youtube.html",
   "./manifest.webmanifest",
-  "./style.css?v=pwa-20260813-2",
-  "./app.js?v=pwa-20260813-2",
-  "./worksheets.js?v=pwa-20260813-2",
+  "./style.css?v=pwa-20260813-3",
+  "./app.js?v=pwa-20260813-3",
+  "./worksheets.js?v=pwa-20260813-3",
   "./assets/lesbichaotic-emblem.webp?v=draft6",
   "./assets/fonts/dm-serif-display-regular.woff2",
   "./assets/fonts/dm-serif-display-italic.woff2",
@@ -109,10 +109,13 @@ async function networkFirst(request) {
   try {
     response = await fetch(request);
   } catch (error) {
-    const cached = await caches.match(request, { ignoreSearch: true });
+    const cached = await cache.match(request);
     if (cached) return cached;
+    const shellCache = await caches.open(SHELL_CACHE);
+    const shellFallback = await shellCache.match(request, { ignoreSearch: request.mode === "navigate" });
+    if (shellFallback) return shellFallback;
     if (request.mode === "navigate") {
-      const fallback = await caches.match(offlineUrl, { ignoreSearch: true });
+      const fallback = await shellCache.match(offlineUrl);
       if (fallback) return fallback;
     }
     throw error;

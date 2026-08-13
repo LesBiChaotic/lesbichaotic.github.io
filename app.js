@@ -238,6 +238,7 @@ syncInstallUI();
 if ("serviceWorker" in navigator && location.protocol !== "file:") {
   window.addEventListener("load", () => {
     navigator.serviceWorker.register("./service-worker.js", { scope: "./", updateViaCache: "none" })
+      .then(registration => registration.update())
       .catch(error => console.warn("Offline mode could not be prepared.", error));
   });
 
